@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+    exclusive-use = "P9.11","P9.13","uart4";
+};
+
+&am33xx_pinmux {
+    gpmc_uart4_pins: pinmux_gpmc_uart4_pins {
+        pinctrl-single,pins = <
+            0x74 0x00       /* UART4_TXD, PIN_OUTPUT | MODE0 */
+            0x70 0x28       /* UART4_RXD, PIN_INPUT  | MODE0 */
+        >;
+    };
+};
+
+&uart4 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&gpmc_uart4_pins>;
+};
+
